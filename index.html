@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="index.css" />
+    <title>Todos</title>
+  </head>
+
+  <body>
+    <div class="header">
+      <div class="header-container">
+        <h2 class="text-center p-2 text-white">TODO List</h2>
+        <div
+          class="input-container w-75 rounded-3 m-auto bg-white d-flex flex-column justify-content-between"
+        >
+          <div class="input-div w-50 m-auto">
+            <input
+              class="border-0 w-100 mt-4"
+              placeholder="What would you like to do?"
+              type="text"
+              id="input-data"
+            />
+          </div>
+          <div class="add-button w-25 m-auto">
+            <button
+              class="w-100 border-0 rounded m-auto text-white p-3 mb-4"
+              id="add-task"
+            >
+              Add
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="list-container w-75 m-auto rounded bg-white d-flex flex-column">
+      <div
+        class="heading d-flex justify-content-between align-items-center p-4"
+      >
+        <h3 class="">Todo List</h3>
+        <div class="option">
+          <button class="border-0 rounded p-2 text-white" id="pending">
+            Pending
+          </button>
+          <button class="border-0 rounded p-2 text-white" id="completed">
+            Completed
+          </button>
+        </div>
+      </div>
+      <div class="column-headers d-flex w-100">
+        <div
+          class="d-flex justify-content-center align-items-center border-end"
+        >
+          <h3 class="text-center fw-normal">List</h3>
+        </div>
+        <div
+          class="d-flex justify-content-center align-items-center border-end"
+        >
+          <h3 class="text-center fw-normal">Status</h3>
+        </div>
+        <div class="d-flex justify-content-center align-items-center">
+          <h3 class="text-center fw-normal">Close</h3>
+        </div>
+      </div>
+      <div class="tasks-container w-100" id="tasks-container"></div>
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
+    <script src="index.js"></script>
+  </body>
+</html>

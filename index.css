@@ -1,0 +1,63 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Montserrat", sans-serif;
+}
+
+body {
+  background-color: #F7F7FE;
+}
+
+input:focus {
+  border: none;
+  outline: none;
+}
+
+.header {
+  height: 35vh;
+}
+
+.header-container {
+  height: 21vh;
+  background-image: linear-gradient(to right, #614386, #506295);
+}
+
+.input-container {
+  height: 180px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+.input-container input {
+  border-bottom: 3px solid #614386 !important;
+  height: 50px;
+}
+.input-container button {
+  background-color: #ED6A59;
+}
+
+.list-container {
+  height: 64vh;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+.list-container .heading {
+  height: 70px;
+}
+.list-container .heading button {
+  background-color: #614386;
+}
+.list-container .column-headers div {
+  width: 26%;
+  height: 50px;
+  background-color: #F9F9F9;
+}
+.list-container .column-headers div h3 {
+  color: gray;
+}
+.list-container .column-headers div:nth-child(1) {
+  width: 48%;
+}
+.list-container .tasks-container {
+  height: 50vh;
+  overflow: scroll;
+}/*# sourceMappingURL=index.css.map */
