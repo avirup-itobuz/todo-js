@@ -80,10 +80,31 @@ input:focus {
 
     .tasks-container {
         height: 50vh;
-        overflow: scroll;
+        overflow-y: scroll;
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
 
         h4 {
             font-size: 20px;
+        }
+
+        .status-button {
+            background-color: #9BC1BC;
+        }
+
+        .close-button {
+            height: 45px;
+            width: 45px;
+            border: 0;
+            border-radius: 40px;
+            background-color: #ffffff;
+            background-image: url(images/delete.svg);
+            background-position: center;
+            background-size: 35px;
+            background-repeat: no-repeat;
+            // box-shadow: rgba(223, 125, 125, 0.481) 0px 7px 29px 0px;
         }
 
         div {
@@ -91,8 +112,6 @@ input:focus {
                 width: 48%;
                 height: 40px;
             }
-
-
 
             div:nth-child(2),
             div:nth-child(3) {
