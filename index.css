@@ -97,4 +97,8 @@ input:focus {
 .list-container .tasks-container div div:nth-child(2),
 .list-container .tasks-container div div:nth-child(3) {
   width: 26%;
+}
+
+.grey {
+  color: gray;
 }/*# sourceMappingURL=index.css.map */

@@ -80,7 +80,7 @@ function loadTasks() {
       "align-items-center"
     );
     if (task.status === "completed")
-      taskTitle.classList.add("text-decoration-line-through");
+      taskTitle.classList.add("text-decoration-line-through", "grey");
     taskTitle.innerHTML = `<h4>${task.title}</h4>`;
     container.appendChild(taskTitle);
     const taskStatus = document.createElement("div");
