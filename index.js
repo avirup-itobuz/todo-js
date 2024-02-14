@@ -196,7 +196,6 @@ input_div.addEventListener("keyup", (e) => {
       console.log(tasks_data);
       for (let i = 0; i < tasks_data.length; i++) {
         if (tasks_data[i].id == add_task.dataset.id) {
-          // console.log(tasks_data[i].id + " " + e.target.dataset.id);
           if (input_div.value.trim().length == 0) {
             alert("empty task");
             return;
