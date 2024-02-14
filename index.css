@@ -16,7 +16,7 @@ h6 {
 }
 
 body {
-  background-color: #F7F7FE;
+  background-color: #f7f7fe;
 }
 
 input:focus {
@@ -42,7 +42,7 @@ input:focus {
   height: 50px;
 }
 .input-container button {
-  background-color: #ED6A59;
+  background-color: #ed6a59;
 }
 
 .list-container {
@@ -55,7 +55,7 @@ input:focus {
 .list-container .column-headers div {
   width: 20%;
   height: 50px;
-  background-color: #F9F9F9;
+  background-color: #f9f9f9;
 }
 .list-container .column-headers div h3 {
   color: gray;
@@ -89,10 +89,10 @@ input:focus {
   z-index: 1;
 }
 .list-container .tasks-container .status-button-red {
-  background-color: #ED6A59;
+  background-color: #ed6a59;
 }
 .list-container .tasks-container .status-button-green {
-  background-color: #9BC1BC;
+  background-color: #9bc1bc;
 }
 .list-container .tasks-container .close-button {
   height: 45px;
