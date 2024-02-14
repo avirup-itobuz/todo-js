@@ -20,7 +20,7 @@
         <div
           class="input-container w-75 rounded-3 m-auto bg-white d-flex flex-column justify-content-between"
         >
-          <div class="input-div w-50 m-auto">
+          <div class="input-div w-75 m-auto">
             <input
               class="border-0 w-100 mt-4"
               placeholder="What would you like to do?"
@@ -42,15 +42,27 @@
     </div>
     <div class="list-container w-75 m-auto rounded bg-white d-flex flex-column">
       <div
-        class="heading d-flex justify-content-between align-items-center p-4"
+        class="heading d-flex justify-content-end align-items-center p-1 mx-2"
       >
-        <h3 class="">Todo List</h3>
-        <div class="option">
-          <button class="border-0 rounded p-2 text-white" id="pending">
+        <!-- <h3 class="fs-4">Todo List</h3> -->
+        <div class="option d-flex flex-wrap justify-content-end">
+          <button class="border-0 rounded p-2 text-white m-1 fs-6" id="all">
+            All
+          </button>
+          <button class="border-0 rounded p-2 text-white m-1 fs-6" id="pending">
             Pending
           </button>
-          <button class="border-0 rounded p-2 text-white" id="completed">
+          <button
+            class="border-0 rounded p-2 text-white m-1 fs-6"
+            id="completed"
+          >
             Completed
+          </button>
+          <button
+            class="border-0 rounded p-2 text-white m-1 fs-6"
+            id="clearCompleted"
+          >
+            Clear
           </button>
         </div>
       </div>
@@ -58,15 +70,15 @@
         <div
           class="d-flex justify-content-center align-items-center border-end"
         >
-          <h3 class="text-center fw-normal">List</h3>
+          <h3 class="text-center fw-normal fs-6">List</h3>
         </div>
         <div
           class="d-flex justify-content-center align-items-center border-end"
         >
-          <h3 class="text-center fw-normal">Status</h3>
+          <h3 class="text-center fw-normal fs-6">Stat</h3>
         </div>
         <div class="d-flex justify-content-center align-items-center">
-          <h3 class="text-center fw-normal">Close</h3>
+          <h3 class="text-center fw-normal fs-6">Close</h3>
         </div>
       </div>
       <div class="tasks-container w-100" id="tasks-container"></div>
@@ -77,6 +89,6 @@
       integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
       crossorigin="anonymous"
     ></script>
-    <script src="index.js"></script>
+    <script src="index.js" type="module"></script>
   </body>
 </html>

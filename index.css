@@ -49,14 +49,11 @@ input:focus {
   height: 64vh;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
-.list-container .heading {
-  height: 70px;
-}
 .list-container .heading button {
   background-color: #614386;
 }
 .list-container .column-headers div {
-  width: 26%;
+  width: 20%;
   height: 50px;
   background-color: #F9F9F9;
 }
@@ -64,7 +61,7 @@ input:focus {
   color: gray;
 }
 .list-container .column-headers div:nth-child(1) {
-  width: 48%;
+  width: 60%;
 }
 .list-container .tasks-container {
   height: 50vh;
@@ -75,8 +72,26 @@ input:focus {
 }
 .list-container .tasks-container h4 {
   font-size: 20px;
+  overflow-x: scroll;
 }
-.list-container .tasks-container .status-button {
+.list-container .tasks-container h4::-webkit-scrollbar {
+  display: none;
+}
+.list-container .tasks-container .edit-btn {
+  height: 20px;
+  width: 20px;
+  min-width: 20px;
+  border-radius: 28px;
+  background-image: url(images/update.svg);
+  background-size: 15px;
+  background-repeat: no-repeat;
+  background-position: center;
+  z-index: 1;
+}
+.list-container .tasks-container .status-button-red {
+  background-color: #ED6A59;
+}
+.list-container .tasks-container .status-button-green {
   background-color: #9BC1BC;
 }
 .list-container .tasks-container .close-button {
@@ -91,12 +106,11 @@ input:focus {
   background-repeat: no-repeat;
 }
 .list-container .tasks-container div div:nth-child(1) {
-  width: 48%;
-  height: 40px;
+  width: 60%;
 }
 .list-container .tasks-container div div:nth-child(2),
 .list-container .tasks-container div div:nth-child(3) {
-  width: 26%;
+  width: 20%;
 }
 
 .grey {
