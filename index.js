@@ -7,7 +7,7 @@ const tasksContainer = document.getElementById("tasks-container");
 const allBtn = document.getElementById("all");
 const pendingBtn = document.getElementById("pending");
 const compeltedBtn = document.getElementById("completed");
-const clearCompletedBtn = document.getElementById("clearCompleted");
+const clearCompletedBtn = document.getElementById("clear-completed");
 let tasksData = [];
 
 function loadAllTasks() {
