@@ -1,17 +1,17 @@
 import { addTasks, deleteTasks, deleteCompleted } from "./helper.js";
 
-const input_div = document.getElementById("input-data");
-const add_task = document.getElementById("add-task");
+const inputDiv = document.getElementById("input-data");
+const addTask = document.getElementById("add-task");
 const update_task = document.getElementById("update-task");
-const tasks_container = document.getElementById("tasks-container");
-const all_btn = document.getElementById("all");
-const pending_btn = document.getElementById("pending");
-const completed_btn = document.getElementById("completed");
-const clear_completed_btn = document.getElementById("clearCompleted");
+const tasksContainer = document.getElementById("tasks-container");
+const allBtn = document.getElementById("all");
+const pendingBtn = document.getElementById("pending");
+const compeltedBtn = document.getElementById("completed");
+const clearCompletedBtn = document.getElementById("clearCompleted");
 let tasks_data = [];
 
 function loadAllTasks() {
-  tasks_container.innerHTML = "";
+  tasksContainer.innerHTML = "";
   if (localStorage.getItem("tasks"))
     tasks_data = JSON.parse(localStorage.getItem("tasks"));
   tasks_data.map((task) => {
@@ -76,14 +76,14 @@ function loadAllTasks() {
     closeButton.addEventListener("click", deleteButtonClicked);
     closeButtonDiv.appendChild(closeButton);
     container.appendChild(closeButtonDiv);
-    tasks_container.appendChild(container);
+    tasksContainer.appendChild(container);
     const horizontalbar = document.createElement("hr");
     horizontalbar.classList.add("m-0");
-    tasks_container.appendChild(horizontalbar);
+    tasksContainer.appendChild(horizontalbar);
   });
 }
 function getSelectedTasks(option) {
-  tasks_container.innerHTML = "";
+  tasksContainer.innerHTML = "";
   if (localStorage.getItem("tasks"))
     tasks_data = JSON.parse(localStorage.getItem("tasks"));
   tasks_data.map((task) => {
@@ -156,10 +156,10 @@ function getSelectedTasks(option) {
       closeButton.addEventListener("click", deleteButtonClicked);
       closeButtonDiv.appendChild(closeButton);
       container.appendChild(closeButtonDiv);
-      tasks_container.appendChild(container);
+      tasksContainer.appendChild(container);
       const horizontalbar = document.createElement("hr");
       horizontalbar.classList.add("m-0");
-      tasks_container.appendChild(horizontalbar);
+      tasksContainer.appendChild(horizontalbar);
     }
   });
 }
@@ -186,83 +186,83 @@ function editTaskInitiate(e) {
   let task = tasks_data.find(
     (ele) => String(ele.id) === String(e.target.dataset.id)
   );
-  input_div.value = task.title;
-  add_task.innerText = "Edit";
-  add_task.dataset.id = e.target.dataset.id;
+  inputDiv.value = task.title;
+  addTask.innerText = "Edit";
+  addTask.dataset.id = e.target.dataset.id;
 }
 
-input_div.addEventListener("keyup", (e) => {
+inputDiv.addEventListener("keyup", (e) => {
   if (e.key === "Enter") {
-    if (add_task.innerText == "Edit") {
+    if (addTask.innerText === "Edit") {
       tasks_data = JSON.parse(localStorage.getItem("tasks"));
       for (let i = 0; i < tasks_data.length; i++) {
-        if (tasks_data[i].id == add_task.dataset.id) {
-          if (input_div.value.trim().length == 0) {
+        if (tasks_data[i].id === addTask.dataset.id) {
+          if (inputDiv.value.trim().length == 0) {
             alert("empty task");
             return;
           } else {
-            tasks_data[i].title = input_div.value.trim();
+            tasks_data[i].title = inputDiv.value.trim();
           }
         }
       }
       localStorage.setItem("tasks", JSON.stringify(tasks_data));
-      add_task.innerText = "Add";
-      input_div.value = "";
+      addTask.innerText = "Add";
+      inputDiv.value = "";
       loadAllTasks();
       return;
     }
-    if (!input_div.value.trim().length) {
+    if (!inputDiv.value.trim().length) {
       alert("empty task");
       return;
     }
     if (localStorage.getItem("tasks"))
       tasks_data = JSON.parse(localStorage.getItem("tasks"));
-    const data = addTasks(tasks_data, input_div.value);
+    const data = addTasks(tasks_data, inputDiv.value);
     if (data === undefined) return;
     localStorage.setItem("tasks", JSON.stringify(data));
-    input_div.value = "";
+    inputDiv.value = "";
     loadAllTasks();
   }
 });
-add_task.addEventListener("click", (e) => {
-  if (add_task.innerText === "Edit") {
+addTask.addEventListener("click", (e) => {
+  if (addTask.innerText === "Edit") {
     tasks_data = JSON.parse(localStorage.getItem("tasks"));
     for (let i = 0; i < tasks_data.length; i++) {
       if (String(tasks_data[i].id) === String(e.target.dataset.id)) {
-        if (!input_div.value.trim().length) {
+        if (!inputDiv.value.trim().length) {
           alert("empty task");
           return;
         } else {
-          tasks_data[i].title = input_div.value.trim();
+          tasks_data[i].title = inputDiv.value.trim();
         }
       }
     }
     localStorage.setItem("tasks", JSON.stringify(tasks_data));
-    add_task.innerText = "Add";
-    input_div.value = "";
+    addTask.innerText = "Add";
+    inputDiv.value = "";
     loadAllTasks();
     return;
   }
-  if (!input_div.value.trim().length) {
+  if (!inputDiv.value.trim().length) {
     alert("empty task");
     return;
   }
   if (localStorage.getItem("tasks"))
     tasks_data = JSON.parse(localStorage.getItem("tasks"));
-  const data = addTasks(tasks_data, input_div.value);
+  const data = addTasks(tasks_data, inputDiv.value);
   if (data === undefined) return;
   localStorage.setItem("tasks", JSON.stringify(data));
-  input_div.value = "";
+  inputDiv.value = "";
   loadAllTasks();
 });
-all_btn.addEventListener("click", loadAllTasks);
-pending_btn.addEventListener("click", () => {
+allBtn.addEventListener("click", loadAllTasks);
+pendingBtn.addEventListener("click", () => {
   getSelectedTasks("pending");
 });
-completed_btn.addEventListener("click", () => {
+compeltedBtn.addEventListener("click", () => {
   getSelectedTasks("completed");
 });
-clear_completed_btn.addEventListener("click", () => {
+clearCompletedBtn.addEventListener("click", () => {
   if (localStorage.getItem("tasks"))
     tasks_data = JSON.parse(localStorage.getItem("tasks"));
   const data = deleteCompleted(tasks_data);
