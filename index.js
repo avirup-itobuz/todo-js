@@ -11,7 +11,6 @@ const clearCompleted_btn = document.getElementById("clearCompleted");
 let tasks_data = [];
 
 function loadAllTasks() {
-  console.log("all");
   tasks_container.innerHTML = "";
   if (localStorage.getItem("tasks"))
     tasks_data = JSON.parse(localStorage.getItem("tasks"));
@@ -84,7 +83,6 @@ function loadAllTasks() {
   });
 }
 function getSelectedTasks(option) {
-  console.log(option);
   tasks_container.innerHTML = "";
   if (localStorage.getItem("tasks"))
     tasks_data = JSON.parse(localStorage.getItem("tasks"));
@@ -166,7 +164,6 @@ function getSelectedTasks(option) {
   });
 }
 function changeStatus(e) {
-  console.log(e.target.dataset.id);
   tasks_data = JSON.parse(localStorage.getItem("tasks"));
   for (let i = 0; i < tasks_data.length; i++) {
     if (String(tasks_data[i].id) === String(e.target.dataset.id)) {
@@ -179,19 +176,16 @@ function changeStatus(e) {
   loadAllTasks();
 }
 function deleteButtonClicked(e) {
-  console.log(e.target.dataset.id);
   tasks_data = JSON.parse(localStorage.getItem("tasks"));
   const data = deleteTasks(tasks_data, e.target.dataset.id);
   localStorage.setItem("tasks", JSON.stringify(data));
   loadAllTasks();
 }
 function editTaskInitiate(e) {
-  console.log(e.target.dataset.id);
   tasks_data = JSON.parse(localStorage.getItem("tasks"));
   let task = tasks_data.find(
     (ele) => String(ele.id) === String(e.target.dataset.id)
   );
-  console.log(task);
   input_div.value = task.title;
   add_task.innerText = "Edit";
   add_task.dataset.id = e.target.dataset.id;
@@ -200,10 +194,7 @@ function editTaskInitiate(e) {
 input_div.addEventListener("keyup", (e) => {
   if (e.key === "Enter") {
     if (add_task.innerText == "Edit") {
-      console.log("update");
-      console.log(add_task.dataset.id);
       tasks_data = JSON.parse(localStorage.getItem("tasks"));
-      console.log(tasks_data);
       for (let i = 0; i < tasks_data.length; i++) {
         if (tasks_data[i].id == add_task.dataset.id) {
           if (input_div.value.trim().length == 0) {
@@ -235,13 +226,9 @@ input_div.addEventListener("keyup", (e) => {
 });
 add_task.addEventListener("click", (e) => {
   if (add_task.innerText === "Edit") {
-    console.log("update");
-    console.log(e.target.dataset.id);
     tasks_data = JSON.parse(localStorage.getItem("tasks"));
-    console.log(tasks_data);
     for (let i = 0; i < tasks_data.length; i++) {
       if (String(tasks_data[i].id) === String(e.target.dataset.id)) {
-        // console.log(tasks_data[i].id + " " + e.target.dataset.id);
         if (!input_div.value.trim().length) {
           alert("empty task");
           return;
@@ -256,7 +243,6 @@ add_task.addEventListener("click", (e) => {
     loadAllTasks();
     return;
   }
-  console.log(e.target);
   if (!input_div.value.trim().length) {
     alert("empty task");
     return;
