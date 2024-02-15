@@ -2,19 +2,19 @@ import { addTasks, deleteTasks, deleteCompleted } from "./helper.js";
 
 const inputDiv = document.getElementById("input-data");
 const addTask = document.getElementById("add-task");
-const update_task = document.getElementById("update-task");
+const updateTask = document.getElementById("update-task");
 const tasksContainer = document.getElementById("tasks-container");
 const allBtn = document.getElementById("all");
 const pendingBtn = document.getElementById("pending");
 const compeltedBtn = document.getElementById("completed");
 const clearCompletedBtn = document.getElementById("clearCompleted");
-let tasks_data = [];
+let tasksData = [];
 
 function loadAllTasks() {
   tasksContainer.innerHTML = "";
   if (localStorage.getItem("tasks"))
-    tasks_data = JSON.parse(localStorage.getItem("tasks"));
-  tasks_data.map((task) => {
+    tasksData = JSON.parse(localStorage.getItem("tasks"));
+  tasksData.map((task) => {
     const container = document.createElement("div");
     container.classList.add(
       "w-100",
@@ -85,8 +85,8 @@ function loadAllTasks() {
 function getSelectedTasks(option) {
   tasksContainer.innerHTML = "";
   if (localStorage.getItem("tasks"))
-    tasks_data = JSON.parse(localStorage.getItem("tasks"));
-  tasks_data.map((task) => {
+    tasksData = JSON.parse(localStorage.getItem("tasks"));
+  tasksData.map((task) => {
     if (task.status === option) {
       const container = document.createElement("div");
       container.classList.add(
@@ -164,26 +164,25 @@ function getSelectedTasks(option) {
   });
 }
 function changeStatus(e) {
-  tasks_data = JSON.parse(localStorage.getItem("tasks"));
-  for (let i = 0; i < tasks_data.length; i++) {
-    if (String(tasks_data[i].id) === String(e.target.dataset.id)) {
-      if (tasks_data[i].status === "pending")
-        tasks_data[i].status = "completed";
-      else tasks_data[i].status = "pending";
+  tasksData = JSON.parse(localStorage.getItem("tasks"));
+  for (let i = 0; i < tasksData.length; i++) {
+    if (String(tasksData[i].id) === String(e.target.dataset.id)) {
+      if (tasksData[i].status === "pending") tasksData[i].status = "completed";
+      else tasksData[i].status = "pending";
     }
   }
-  localStorage.setItem("tasks", JSON.stringify(tasks_data));
+  localStorage.setItem("tasks", JSON.stringify(tasksData));
   loadAllTasks();
 }
 function deleteButtonClicked(e) {
-  tasks_data = JSON.parse(localStorage.getItem("tasks"));
-  const data = deleteTasks(tasks_data, e.target.dataset.id);
+  tasksData = JSON.parse(localStorage.getItem("tasks"));
+  const data = deleteTasks(tasksData, e.target.dataset.id);
   localStorage.setItem("tasks", JSON.stringify(data));
   loadAllTasks();
 }
 function editTaskInitiate(e) {
-  tasks_data = JSON.parse(localStorage.getItem("tasks"));
-  let task = tasks_data.find(
+  tasksData = JSON.parse(localStorage.getItem("tasks"));
+  let task = tasksData.find(
     (ele) => String(ele.id) === String(e.target.dataset.id)
   );
   inputDiv.value = task.title;
@@ -194,18 +193,18 @@ function editTaskInitiate(e) {
 inputDiv.addEventListener("keyup", (e) => {
   if (e.key === "Enter") {
     if (addTask.innerText === "Edit") {
-      tasks_data = JSON.parse(localStorage.getItem("tasks"));
-      for (let i = 0; i < tasks_data.length; i++) {
-        if (tasks_data[i].id === addTask.dataset.id) {
-          if (inputDiv.value.trim().length == 0) {
+      tasksData = JSON.parse(localStorage.getItem("tasks"));
+      for (let i = 0; i < tasksData.length; i++) {
+        if (tasksData[i].id === addTask.dataset.id) {
+          if (!inputDiv.value.trim().length) {
             alert("empty task");
             return;
           } else {
-            tasks_data[i].title = inputDiv.value.trim();
+            tasksData[i].title = inputDiv.value.trim();
           }
         }
       }
-      localStorage.setItem("tasks", JSON.stringify(tasks_data));
+      localStorage.setItem("tasks", JSON.stringify(tasksData));
       addTask.innerText = "Add";
       inputDiv.value = "";
       loadAllTasks();
@@ -216,8 +215,8 @@ inputDiv.addEventListener("keyup", (e) => {
       return;
     }
     if (localStorage.getItem("tasks"))
-      tasks_data = JSON.parse(localStorage.getItem("tasks"));
-    const data = addTasks(tasks_data, inputDiv.value);
+      tasksData = JSON.parse(localStorage.getItem("tasks"));
+    const data = addTasks(tasksData, inputDiv.value);
     if (data === undefined) return;
     localStorage.setItem("tasks", JSON.stringify(data));
     inputDiv.value = "";
@@ -226,18 +225,18 @@ inputDiv.addEventListener("keyup", (e) => {
 });
 addTask.addEventListener("click", (e) => {
   if (addTask.innerText === "Edit") {
-    tasks_data = JSON.parse(localStorage.getItem("tasks"));
-    for (let i = 0; i < tasks_data.length; i++) {
-      if (String(tasks_data[i].id) === String(e.target.dataset.id)) {
+    tasksData = JSON.parse(localStorage.getItem("tasks"));
+    for (let i = 0; i < tasksData.length; i++) {
+      if (String(tasksData[i].id) === String(e.target.dataset.id)) {
         if (!inputDiv.value.trim().length) {
           alert("empty task");
           return;
         } else {
-          tasks_data[i].title = inputDiv.value.trim();
+          tasksData[i].title = inputDiv.value.trim();
         }
       }
     }
-    localStorage.setItem("tasks", JSON.stringify(tasks_data));
+    localStorage.setItem("tasks", JSON.stringify(tasksData));
     addTask.innerText = "Add";
     inputDiv.value = "";
     loadAllTasks();
@@ -248,8 +247,8 @@ addTask.addEventListener("click", (e) => {
     return;
   }
   if (localStorage.getItem("tasks"))
-    tasks_data = JSON.parse(localStorage.getItem("tasks"));
-  const data = addTasks(tasks_data, inputDiv.value);
+    tasksData = JSON.parse(localStorage.getItem("tasks"));
+  const data = addTasks(tasksData, inputDiv.value);
   if (data === undefined) return;
   localStorage.setItem("tasks", JSON.stringify(data));
   inputDiv.value = "";
@@ -264,8 +263,8 @@ compeltedBtn.addEventListener("click", () => {
 });
 clearCompletedBtn.addEventListener("click", () => {
   if (localStorage.getItem("tasks"))
-    tasks_data = JSON.parse(localStorage.getItem("tasks"));
-  const data = deleteCompleted(tasks_data);
+    tasksData = JSON.parse(localStorage.getItem("tasks"));
+  const data = deleteCompleted(tasksData);
   localStorage.setItem("tasks", JSON.stringify(data));
   loadAllTasks();
 });
