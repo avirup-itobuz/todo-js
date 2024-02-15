@@ -96,7 +96,8 @@ function getSelectedTasks(option) {
         "d-flex",
         "align-items-center",
         "fs-5",
-        "py-1"
+        "py-1",
+        "ps-1"
       );
       const taskTitle = document.createElement("div");
       taskTitle.classList.add(
@@ -109,6 +110,7 @@ function getSelectedTasks(option) {
       if (task.status === "completed")
         taskTitleText.classList.add("text-decoration-line-through", "grey");
       taskTitle.appendChild(taskTitleText);
+
       const editBtn = document.createElement("button");
       editBtn.dataset.id = `${task.id}`;
       editBtn.classList.add("border-0", "bg-white", "edit-btn");
@@ -116,12 +118,15 @@ function getSelectedTasks(option) {
       taskTitle.appendChild(editBtn);
       container.appendChild(taskTitle);
       const taskStatus = document.createElement("div");
+
       taskStatus.classList.add(
         "d-flex",
         "justify-content-center",
         "align-items-center"
       );
+
       const statusButton = document.createElement("button");
+
       statusButton.classList.add(
         "rounded",
         "border-0",
@@ -134,16 +139,19 @@ function getSelectedTasks(option) {
         statusButton.classList.add("status-button-green");
       else statusButton.classList.add("status-button-red");
       if (screen.width > 470) statusButton.innerText = `${task.status}`;
+
       statusButton.addEventListener("click", changeStatus);
       statusButton.dataset.id = `${task.id}`;
       taskStatus.appendChild(statusButton);
       container.appendChild(taskStatus);
       const closeButtonDiv = document.createElement("div");
+
       closeButtonDiv.classList.add(
         "d-flex",
         "justify-content-center",
         "align-items-center"
       );
+
       const closeButton = document.createElement("button");
       closeButton.classList.add("close-button");
       closeButton.dataset.id = `${task.id}`;
@@ -161,7 +169,7 @@ function changeStatus(e) {
   console.log(e.target.dataset.id);
   tasks_data = JSON.parse(localStorage.getItem("tasks"));
   for (let i = 0; i < tasks_data.length; i++) {
-    if (tasks_data[i].id == e.target.dataset.id) {
+    if (String(tasks_data[i].id) === String(e.target.dataset.id)) {
       if (tasks_data[i].status === "pending")
         tasks_data[i].status = "completed";
       else tasks_data[i].status = "pending";
@@ -180,7 +188,9 @@ function deleteButtonClicked(e) {
 function editTaskInitiate(e) {
   console.log(e.target.dataset.id);
   tasks_data = JSON.parse(localStorage.getItem("tasks"));
-  let task = tasks_data.find((ele) => ele.id == e.target.dataset.id);
+  let task = tasks_data.find(
+    (ele) => String(ele.id) === String(e.target.dataset.id)
+  );
   console.log(task);
   input_div.value = task.title;
   add_task.innerText = "Edit";
@@ -210,7 +220,7 @@ input_div.addEventListener("keyup", (e) => {
       loadAllTasks();
       return;
     }
-    if (input_div.value.trim().length == 0) {
+    if (!input_div.value.trim().length) {
       alert("empty task");
       return;
     }
@@ -224,15 +234,15 @@ input_div.addEventListener("keyup", (e) => {
   }
 });
 add_task.addEventListener("click", (e) => {
-  if (add_task.innerText == "Edit") {
+  if (add_task.innerText === "Edit") {
     console.log("update");
     console.log(e.target.dataset.id);
     tasks_data = JSON.parse(localStorage.getItem("tasks"));
     console.log(tasks_data);
     for (let i = 0; i < tasks_data.length; i++) {
-      if (tasks_data[i].id == e.target.dataset.id) {
+      if (String(tasks_data[i].id) === String(e.target.dataset.id)) {
         // console.log(tasks_data[i].id + " " + e.target.dataset.id);
-        if (input_div.value.trim().length == 0) {
+        if (!input_div.value.trim().length) {
           alert("empty task");
           return;
         } else {
@@ -247,7 +257,7 @@ add_task.addEventListener("click", (e) => {
     return;
   }
   console.log(e.target);
-  if (input_div.value.trim().length == 0) {
+  if (!input_div.value.trim().length) {
     alert("empty task");
     return;
   }
