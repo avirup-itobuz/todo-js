@@ -7,7 +7,7 @@ const tasks_container = document.getElementById("tasks-container");
 const all_btn = document.getElementById("all");
 const pending_btn = document.getElementById("pending");
 const completed_btn = document.getElementById("completed");
-const clearCompleted_btn = document.getElementById("clearCompleted");
+const clear_completed_btn = document.getElementById("clearCompleted");
 let tasks_data = [];
 
 function loadAllTasks() {
@@ -262,7 +262,7 @@ pending_btn.addEventListener("click", () => {
 completed_btn.addEventListener("click", () => {
   getSelectedTasks("completed");
 });
-clearCompleted_btn.addEventListener("click", () => {
+clear_completed_btn.addEventListener("click", () => {
   if (localStorage.getItem("tasks"))
     tasks_data = JSON.parse(localStorage.getItem("tasks"));
   const data = deleteCompleted(tasks_data);
